@@ -1,9 +1,15 @@
 import './App.css';
+// import Header from './components/Header';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import MainView from './components/MainView';
+
 
 function App() {
   return (
     <div className="App">
-      <h2>Hello world</h2>
+      {/* <Header /> */}
+      <MainView />
+
     </div>
   );
 }

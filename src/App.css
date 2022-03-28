@@ -1,0 +1,27 @@
+.main{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.App {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  background: url(./assets/Background.jpg);
+  background-repeat: no-repeat;
+}
+
+/*Header*/
+.measurement {
+  width: 76px;
+  height: 48px;
+  border-left: solid 1px white;
+}
+
+
+/*Main Body*/
+.line-break { 
+  color: white;
+}
