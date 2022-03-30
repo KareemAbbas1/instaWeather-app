@@ -9,20 +9,46 @@
   width: 100vw;
   height: 100vh;
   top: 0px;
+  left: 0px;
   background: url(./assets/Background.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
   color: white;
 }
 
 /*Header*/
-.measurement {
+.measurement-active {
   width: 76px;
   height: 48px;
   border-left: solid 1px white;
+  background: rgba(255, 255, 255, 0.2)
+}
+
+.measurement:hover {
+  cursor: pointer;
+}
+
+.measurement {
+  width: 76px;
+  height: 48px;
 }
 
 
 /*Main Body*/
 .line-break { 
   color: white;
+}
+
+.main-icon {
+  width: 80px;
+  height: auto;
+}
+
+.temp {
+  font-size: 5rem;
+  margin-left: 142px;
+}
+
+.hourly-temp {
+  margin-left: 130px;
 }

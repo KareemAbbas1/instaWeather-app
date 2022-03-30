@@ -1,14 +1,13 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import Icon from '../assets/Current Icon.png'
 import { useEffect, useState } from 'react';
 
 const MainView = () => {
 
-    const [data, setData] = useState();
-
     //API Key
     const API_KEY = "a177f8481c31fa96c3f95ad4f4f84610";
+
 
     // Create a new Date instance
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -34,15 +33,41 @@ const MainView = () => {
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
 
+        // Use this link "https://cors-anywhere.herokuapp.com/corsdemo" to get a temporary access to the CORS-anywhere demo server
         fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${latitude},${longitude}`)
             .then(res => res.json())
             .then(data => setData(data))
             .catch(error => console.log("Error", error))
     };
 
-    let fTemp = data ? data.currently.temperature : null;
+
+    const [data, setData] = useState();
+    const [tempType, setTemptype] = useState(true);
+    // Handle toggle measurement type
+    const toggleCMeasurement = () => {
+        setTemptype(false);
+    };
+
+    const toggleFMeasurement = () => {
+        setTemptype(true);
+    };
+
+    /* Extracting the data out of the request body */
+    // Main temperature
+    let fTemp = data ? Math.round(data.currently.temperature) : null;
     let cTemp = Math.round((fTemp - 32) / 1.8);
+
+    // Summary
     let summary = data ? data.currently.summary : null;
+    let aggregatedSummary = data ? data.hourly.summary : null;
+
+    /* Hourly temperature */
+    let firstHourTemp = data ? Math.round(data.hourly.data[0].temperature) : null;
+    let lasttHourTemp = data ? Math.round(data.hourly.data[48].temperature) : null;
+    // Convert to celsius
+    let cFirstHourTemp = Math.round((firstHourTemp - 32) / 1.8);
+    let cLastHourTemp = Math.round((lasttHourTemp - 32) / 1.8);
+
     // let icon = data ? data.currently.icon : null;
     // console.log(temp)
     console.log(data)
@@ -51,8 +76,8 @@ const MainView = () => {
             <div className='pt-5 d-flex justify-content-between align-items-center '>
                 <div className='brand'><h2>INSTAWEATER</h2></div>
                 <span className='d-flex justify-content-between'>
-                    <div className='measurement'><h2 className='text-center'>C</h2></div>
-                    <div className='measurement'><h2 className='text-center'>F</h2></div>
+                    <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h2 className='pt-1 text-center'>C</h2></div>
+                    <div className={tempType ? 'measurement-active' : 'measurement' } onClick={() => toggleFMeasurement()}><h2 className='pt-1 text-center'>F</h2></div>
                 </span>
             </div>
 
@@ -62,16 +87,19 @@ const MainView = () => {
                     <h1 id='location' className=''>City Name</h1>
                     <p className=''><strong>{newDate}</strong></p>
                     <div>
-                        <img src={Icon} alt='weather icon' className='mt-4'></img>
+                        <img src={Icon} alt='weather icon' className='mt-3 main-icon'></img>
                     </div>
-                    <div className='mt-3'>
+                    <div className='mt-4'>
                         <h2>{summary}</h2>
                     </div>
                 </div>
 
                 <div>
-                    <h2 className=' me-4'>{fTemp}</h2>
-                    <h2 className=' me-4'>{cTemp}</h2>
+                    <h2 className='temp'>{tempType ? fTemp : cTemp}&#176;</h2>
+                    <h2 className='mt-5 hourly-temp'>
+                        {tempType ? firstHourTemp : cFirstHourTemp}&#176;
+                        / {tempType ? lasttHourTemp : cLastHourTemp}&#176;</h2>
+                    <h6 className='mt-5 me-4'>{aggregatedSummary}</h6>
                 </div>
             </div>
 
@@ -79,18 +107,12 @@ const MainView = () => {
                 <hr className='line-break'></hr>
             </div>
 
+            <div className='footer'>
+                footer
+            </div>
+
         </Container>
     )
 }
 
 export default MainView
-
-
-
-// if (res.ok) {
-//     console.log('Success')
-//         .then(res => res.json())
-// }else {
-//     console.log("Failed to fetch data")
-// }
-// }
