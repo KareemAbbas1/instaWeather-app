@@ -27,7 +27,7 @@ const MainView = () => {
 
     useEffect(() => {
         getLocation();
-    }, [])
+    }, []);
 
     const getWeatherData = (position) => {
         let latitude = position.coords.latitude;
@@ -35,12 +35,18 @@ const MainView = () => {
 
         // Use this link "https://cors-anywhere.herokuapp.com/corsdemo" to get a temporary access to the CORS-anywhere demo server
         fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${latitude},${longitude}`)
-            .then(res => res.json())
-            .then(data => setData(data))
-            .catch(error => console.log("Error", error))
+        .then(res => res.json())
+        .then(data => setData(data))
+        .catch(error => console.log("Error", error));
+        
+        // Get city name by utilizing reverse geocoding
+        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
+        .then(res => res.json())
+        .then(cityName => setCityName(cityName))
+        .catch(error => console.log("Error", error));
     };
 
-
+    const [cityName, setCityName] = useState();
     const [data, setData] = useState();
     const [tempType, setTemptype] = useState(true);
     // Handle toggle measurement type
@@ -52,6 +58,7 @@ const MainView = () => {
         setTemptype(true);
     };
 
+    
     /* Extracting the data out of the request body */
     // Main temperature
     let fTemp = data ? Math.round(data.currently.temperature) : null;
@@ -67,6 +74,9 @@ const MainView = () => {
     // Convert to celsius
     let cFirstHourTemp = Math.round((firstHourTemp - 32) / 1.8);
     let cLastHourTemp = Math.round((lasttHourTemp - 32) / 1.8);
+
+    // Get city name
+    let city = cityName ? cityName.locality : null;
 
     // let icon = data ? data.currently.icon : null;
     // console.log(temp)
@@ -84,7 +94,7 @@ const MainView = () => {
 
             <div className='pt-5 mt-5 mb-5 d-flex justify-content-between'>
                 <div>
-                    <h1 id='location' className=''>City Name</h1>
+                    <h1 id='location' className=''>{city}</h1>
                     <p className=''><strong>{newDate}</strong></p>
                     <div>
                         <img src={Icon} alt='weather icon' className='mt-3 main-icon'></img>
