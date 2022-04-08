@@ -1,7 +1,7 @@
-import React from 'react'
-import { Container, Row } from 'react-bootstrap'
-import Icon from '../assets/Current Icon.png'
+import React from 'react';
+import { Container } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import CurrentIcon from './CurrentIcon';
 
 const MainView = () => {
 
@@ -15,18 +15,17 @@ const MainView = () => {
     let m = d.getMonth() + 1;
     let newDate = `${weekday[d.getDay()]}, ${m}.${d.getDate()}.${d.getFullYear()}`;
 
-    const x = document.getElementById("location")
-    const getLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getWeatherData);
-        } else {
-            x.innerHTML = "Geolocation is not supported on this browser"
-        };
-        // return getLocation();
-    };
 
     useEffect(() => {
-        getLocation();
+        const x = document.getElementById("location")
+        const getLocation = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getWeatherData);
+            } else {
+                x.innerHTML = "Geolocation is not supported on this browser"
+            };
+        };
+        return getLocation();
     }, []);
 
     const getWeatherData = (position) => {
@@ -35,15 +34,15 @@ const MainView = () => {
 
         // Use this link "https://cors-anywhere.herokuapp.com/corsdemo" to get a temporary access to the CORS-anywhere demo server
         fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${latitude},${longitude}`)
-        .then(res => res.json())
-        .then(data => setData(data))
-        .catch(error => console.log("Error", error));
-        
+            .then(res => res.json())
+            .then(data => setData(data))
+            .catch(error => console.log("Error", error));
+
         // Get city name by utilizing reverse geocoding
         fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
-        .then(res => res.json())
-        .then(cityName => setCityName(cityName))
-        .catch(error => console.log("Error", error));
+            .then(res => res.json())
+            .then(cityName => setCityName(cityName))
+            .catch(error => console.log("Error", error));
     };
 
     const [cityName, setCityName] = useState();
@@ -58,7 +57,7 @@ const MainView = () => {
         setTemptype(true);
     };
 
-    
+
     /* Extracting the data out of the request body */
     // Main temperature
     let fTemp = data ? Math.round(data.currently.temperature) : null;
@@ -77,9 +76,9 @@ const MainView = () => {
 
     // Get city name
     let city = cityName ? cityName.locality : null;
+    // Get Icon
+    let iconType = data ? data.currently.icon : null;
 
-    // let icon = data ? data.currently.icon : null;
-    // console.log(temp)
     console.log(data)
     return (
         <Container>
@@ -87,7 +86,7 @@ const MainView = () => {
                 <div className='brand'><h2>INSTAWEATER</h2></div>
                 <span className='d-flex justify-content-between'>
                     <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h2 className='pt-1 text-center'>C</h2></div>
-                    <div className={tempType ? 'measurement-active' : 'measurement' } onClick={() => toggleFMeasurement()}><h2 className='pt-1 text-center'>F</h2></div>
+                    <div className={tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleFMeasurement()}><h2 className='pt-1 text-center'>F</h2></div>
                 </span>
             </div>
 
@@ -95,9 +94,9 @@ const MainView = () => {
             <div className='pt-5 mt-5 mb-5 d-flex justify-content-between'>
                 <div>
                     <h1 id='location' className=''>{city}</h1>
-                    <p className=''><strong>{newDate}</strong></p>
-                    <div>
-                        <img src={Icon} alt='weather icon' className='mt-3 main-icon'></img>
+                    <p><strong>{newDate}</strong></p>
+                    <div className='display-1'>
+                        <CurrentIcon iconType={iconType} />
                     </div>
                     <div className='mt-4'>
                         <h2>{summary}</h2>
