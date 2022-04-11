@@ -2,12 +2,12 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import CurrentIcon from './CurrentIcon';
+import HourTemp from './HourTemp';
 
 const MainView = () => {
 
     //API Key
     const API_KEY = "a177f8481c31fa96c3f95ad4f4f84610";
-
 
     // Create a new Date instance
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -68,6 +68,8 @@ const MainView = () => {
     let aggregatedSummary = data ? data.hourly.summary : null;
 
     /* Hourly temperature */
+    let hourlyTemprature = data? data.hourly.data : null;
+    // console.log(hourlyTemprature)
     let firstHourTemp = data ? Math.round(data.hourly.data[0].temperature) : null;
     let lasttHourTemp = data ? Math.round(data.hourly.data[48].temperature) : null;
     // Convert to celsius
@@ -78,12 +80,13 @@ const MainView = () => {
     let city = cityName ? cityName.locality : null;
     // Get Icon
     let iconType = data ? data.currently.icon : null;
+    /*End extract data*/
 
-    console.log(data)
+    // console.log(data)
     return (
         <Container>
-            <div className='pt-5 d-flex justify-content-between align-items-center '>
-                <div className='brand'><h2>INSTAWEATER</h2></div>
+            <div className='mt-5 d-flex justify-content-between align-items-center '>
+                <div className=''><h2>INSTAWEATER</h2></div>
                 <span className='d-flex justify-content-between'>
                     <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h2 className='pt-1 text-center'>C</h2></div>
                     <div className={tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleFMeasurement()}><h2 className='pt-1 text-center'>F</h2></div>
@@ -91,34 +94,51 @@ const MainView = () => {
             </div>
 
 
-            <div className='pt-5 mt-5 mb-5 d-flex justify-content-between'>
+            <div className='pt-4 mt-4 d-flex justify-content-between align-items-center'>
                 <div>
-                    <h1 id='location' className=''>{city}</h1>
+                    <h1 id='location'>{city}</h1>
                     <p><strong>{newDate}</strong></p>
                     <div className='display-1'>
                         <CurrentIcon iconType={iconType} />
                     </div>
-                    <div className='mt-4'>
+                    <div className='mt-2'>
                         <h2>{summary}</h2>
                     </div>
                 </div>
 
-                <div>
+                <div className='mb-5'>
                     <h2 className='temp'>{tempType ? fTemp : cTemp}&#176;</h2>
-                    <h2 className='mt-5 hourly-temp'>
+                    <h2 className='hourly-temp'>
                         {tempType ? firstHourTemp : cFirstHourTemp}&#176;
                         / {tempType ? lasttHourTemp : cLastHourTemp}&#176;</h2>
-                    <h6 className='mt-5 me-4'>{aggregatedSummary}</h6>
+                    <div className='mt-4'>{aggregatedSummary}</div>
                 </div>
             </div>
-
             <div>
                 <hr className='line-break'></hr>
             </div>
 
-            <div className='footer'>
-                footer
-            </div>
+            <Container fluid className='py-2'>
+                <div className='d-flex flex-row flex-nowrap overflow-auto'>
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                    <HourTemp iconType={iconType} />
+                </div>
+            </Container>
+
+            {/* <HourlyTemp /> */}
 
         </Container>
     )

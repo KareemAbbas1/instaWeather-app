@@ -45,10 +45,35 @@
 }
 
 .temp {
-  font-size: 5rem;
-  margin-left: 142px;
+  font-size: 8.7rem;
+  /* margin-left: 142px; */
 }
 
 .hourly-temp {
-  margin-left: 130px;
+  /* margin-left: 130px; */
+  font-size: 35px;
+}
+
+/*Hourly temp style*/
+.card-body {
+  min-height: 300px;
+  min-width: 120px;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFFFFF;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
