@@ -57,7 +57,7 @@
 /*Hourly temp style*/
 .card-body {
   min-height: 300px;
-  min-width: 120px;
+  min-width: 115px;
 }
 
 ::-webkit-scrollbar {

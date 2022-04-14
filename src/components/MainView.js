@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import CurrentIcon from './CurrentIcon';
-import HourTemp from './HourTemp';
+import HourlyTemp from './HourlyTemp';
 
 const MainView = () => {
 
@@ -48,6 +48,7 @@ const MainView = () => {
     const [cityName, setCityName] = useState();
     const [data, setData] = useState();
     const [tempType, setTemptype] = useState(true);
+
     // Handle toggle measurement type
     const toggleCMeasurement = () => {
         setTemptype(false);
@@ -68,10 +69,10 @@ const MainView = () => {
     let aggregatedSummary = data ? data.hourly.summary : null;
 
     /* Hourly temperature */
-    let hourlyTemprature = data? data.hourly.data : null;
-    // console.log(hourlyTemprature)
     let firstHourTemp = data ? Math.round(data.hourly.data[0].temperature) : null;
-    let lasttHourTemp = data ? Math.round(data.hourly.data[48].temperature) : null;
+    let lasttHourTemp = data ? Math.round(data.hourly.data[11].temperature) : null;   
+    let hourlyTemprature = data ? data.hourly.data : null;
+
     // Convert to celsius
     let cFirstHourTemp = Math.round((firstHourTemp - 32) / 1.8);
     let cLastHourTemp = Math.round((lasttHourTemp - 32) / 1.8);
@@ -118,27 +119,7 @@ const MainView = () => {
                 <hr className='line-break'></hr>
             </div>
 
-            <Container fluid className='py-2'>
-                <div className='d-flex flex-row flex-nowrap overflow-auto'>
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                    <HourTemp iconType={iconType} />
-                </div>
-            </Container>
-
-            {/* <HourlyTemp /> */}
+            <HourlyTemp hourlyTemprature={hourlyTemprature}/>
 
         </Container>
     )
