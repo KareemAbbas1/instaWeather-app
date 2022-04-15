@@ -3,26 +3,30 @@ import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import HourTemp from './HourTemp';
 
-const Hourly = ({ hourlyTemprature }) => {
+const Hourly = ({ hourlyTemprature, tempType }) => {
 
   const [data, setData] = useState();
 
-  const twelveHours = () => {
+  const twelveHours = async () => {
     hourlyTemprature.length = 12;
-    setData(hourlyTemprature)
-    console.log(typeof data)
+    setTimeout(() => {
+      setData(hourlyTemprature)
+    }, 100)
   };
-  setTimeout(twelveHours, 100);
-
+  twelveHours();
 
 
   return (
     <Container fluid className='py-2'>
       <div className='d-flex flex-row flex-nowrap overflow-auto'>
-        {data.map((h) => (
-          <HourTemp data={h} />
-        ))}
-        {/* <HourTemp data={data} /> */}
+        {data ?
+
+          data.map((h) => (
+            <HourTemp key={h.time} data={h} tempType={tempType} />
+          )) :
+
+          null
+        }
       </div>
     </Container>
   );

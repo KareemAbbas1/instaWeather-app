@@ -6,6 +6,10 @@ import HourlyTemp from './HourlyTemp';
 
 const MainView = () => {
 
+    const [cityName, setCityName] = useState();
+    const [data, setData] = useState();
+    const [tempType, setTemptype] = useState(true);
+
     //API Key
     const API_KEY = "a177f8481c31fa96c3f95ad4f4f84610";
 
@@ -14,7 +18,6 @@ const MainView = () => {
     let d = new Date();
     let m = d.getMonth() + 1;
     let newDate = `${weekday[d.getDay()]}, ${m}.${d.getDate()}.${d.getFullYear()}`;
-
 
     useEffect(() => {
         const x = document.getElementById("location")
@@ -25,8 +28,9 @@ const MainView = () => {
                 x.innerHTML = "Geolocation is not supported on this browser"
             };
         };
-        return getLocation();
+        getLocation();
     }, []);
+
 
     const getWeatherData = (position) => {
         let latitude = position.coords.latitude;
@@ -43,11 +47,9 @@ const MainView = () => {
             .then(res => res.json())
             .then(cityName => setCityName(cityName))
             .catch(error => console.log("Error", error));
+        getWeatherData();
     };
 
-    const [cityName, setCityName] = useState();
-    const [data, setData] = useState();
-    const [tempType, setTemptype] = useState(true);
 
     // Handle toggle measurement type
     const toggleCMeasurement = () => {
@@ -70,8 +72,9 @@ const MainView = () => {
 
     /* Hourly temperature */
     let firstHourTemp = data ? Math.round(data.hourly.data[0].temperature) : null;
-    let lasttHourTemp = data ? Math.round(data.hourly.data[11].temperature) : null;   
+    let lasttHourTemp = data ? Math.round(data.hourly.data[11].temperature) : null;
     let hourlyTemprature = data ? data.hourly.data : null;
+    // console.log(hourlyTemprature)
 
     // Convert to celsius
     let cFirstHourTemp = Math.round((firstHourTemp - 32) / 1.8);
@@ -119,7 +122,7 @@ const MainView = () => {
                 <hr className='line-break'></hr>
             </div>
 
-            <HourlyTemp hourlyTemprature={hourlyTemprature}/>
+            <HourlyTemp tempType={tempType} hourlyTemprature={hourlyTemprature} />
 
         </Container>
     )
