@@ -49,7 +49,7 @@ const MainView = () => {
             .catch(error => console.log("Error", error));
         getWeatherData();
     };
-
+    console.log(data)
 
     // Handle toggle measurement type
     const toggleCMeasurement = () => {
@@ -89,7 +89,7 @@ const MainView = () => {
     // console.log(data)
     return (
         <Container>
-            <div className='my-4 d-flex justify-content-between align-items-center '>
+            <div className='my-5 d-flex justify-content-between align-items-center '>
                 <div className=''><h4>INSTAWEATER</h4></div>
                 <span className='d-flex justify-content-between'>
                     <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h4 className='pt-1 text-center'>C</h4></div>
@@ -98,24 +98,24 @@ const MainView = () => {
             </div>
 
 
-            <div className='mt-4 d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-between align-items-center'>
                 <div>
-                    <h3 id='location'>{city}</h3>
-                    <p><strong>{newDate}</strong></p>
-                    <div className='display-1'>
+                    <span id='location'>{city}</span><br />
+                    <span>{newDate}</span>
+                    <div className='icon'>
                         <CurrentIcon iconType={iconType} />
                     </div>
-                    <div className='mt-2'>
-                        <h4>{summary}</h4>
+                    <div>
+                        <span className='summary'>{summary}</span>
                     </div>
                 </div>
 
-                <div className='mb-5'>
+                <div className='temp-block d-flex align-items-end flex-column'>
                     <h2 className='temp'>{tempType ? fTemp : cTemp}&#176;</h2>
                     <h2 className='hourly-temp'>
                         {tempType ? firstHourTemp : cFirstHourTemp}&#176;
                         / {tempType ? lasttHourTemp : cLastHourTemp}&#176;</h2>
-                    <div className='mt-4'>{aggregatedSummary}</div>
+                    <div className='aggregatedSummary'>{aggregatedSummary}</div>
                 </div>
             </div>
             {/* <div>

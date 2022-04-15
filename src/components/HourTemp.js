@@ -18,12 +18,12 @@ const HourTemp = ({ data, tempType }) => {
     let hours = date.getHours();
     let minutes = '0' + date.getMinutes();
     let formattedTime = hours + ':' + minutes.substring(-2);
-
+    
     return (
         <div className='card-body text-center'>
-            <p style={{ fontSize: '1.6rem' }}>{hours === currentHour ? 'Now' : formattedTime}</p>
-            <div className='display-5'><CurrentIcon iconType={iconType}/></div>
-            <div className='mt-1' style={{ fontSize: '2rem' }}>{tempType ? fTemp : cTemp}&#176;</div>
+            <p className='time'>{hours === currentHour ? 'Now' : formattedTime}</p>
+            <div className='hourly-icon'><CurrentIcon iconType={iconType}/></div>
+            <div className='hour-temp'>{tempType ? fTemp : cTemp}&#176;</div>
         </div>
     );
 };

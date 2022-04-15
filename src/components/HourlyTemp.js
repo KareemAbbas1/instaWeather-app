@@ -15,6 +15,12 @@ const Hourly = ({ hourlyTemprature, tempType }) => {
   };
   twelveHours();
 
+  // const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  // let d = data[0].time;
+  // let date = new Date(d * 1000)
+  // let day = weekday[date.getDay()];
+  // console.log(day)
+
 
   return (
     <Container fluid className=''>

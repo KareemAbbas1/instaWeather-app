@@ -7,7 +7,7 @@
 .App {
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   top: 0px;
   left: 0px;
   background: url(./assets/Background.jpg);
@@ -35,22 +35,38 @@
 
 
 /*Main Body*/
-.line-break { 
-  color: white;
-}
-
-.main-icon {
-  width: 80px;
-  height: auto;
+.temp-block {
+  margin-bottom: 1.8rem;
 }
 
 .temp {
-  font-size: 8rem;
-  /* margin-left: 142px; */
+  font-size: 100px;
+  font-weight: 500;
 }
 
 .hourly-temp {
   font-size: 37px;
+  font-weight: 100;
+  padding-top: 0.5rem;
+}
+
+.aggregatedSummary {
+  font-size: 20px;
+  margin-top: 1rem;
+}
+
+#location {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.icon {
+  font-size: 70px;
+}
+
+.summary {
+  font-size: 30px;
+  font-weight: 500;
 }
 
 /*Hourly & Daily*/
@@ -69,9 +85,25 @@
 
 /*Hourly temp style*/
 .card-body {
-  min-height: 210px;
+  min-height: auto;
   min-width: 115px;
 }
+
+.time {
+  font-size: 1.6rem;
+}
+
+.hourly-icon {
+  font-size: 45px;
+}
+
+.hour-temp {
+  font-size: 2rem;
+  margin-top: 0.5rem;
+}
+
+/*End Hourly temp style*/
+
 
 ::-webkit-scrollbar {
   height: 5px;
@@ -90,3 +122,48 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
+
+
+@media (max-width: 768px) {
+  /*Main View*/
+  .App {
+    font-size: 0.7rem;
+  }
+  .temp-block {
+    margin-bottom: 1rem;
+  }
+  .temp {
+    font-size: 3rem;
+  }
+  .hourly-temp{
+    font-size: 20px;
+    padding-top: 0.4rem;
+  }
+  .aggregatedSummary{
+    font-size: 15px;
+    margin-top: 0.3rem;
+  }
+  #location{
+    font-size: 1.2rem;
+  }
+  .icon {
+    font-size: 30px;
+  }
+  .summary {
+    font-size: 18px;
+  }
+  /*Hourly Temperatura*/
+  .card-body{
+    min-width: 62px;
+  }
+  .time {
+    font-size: 0.8rem;
+  }
+  .hourly-icon {
+    font-size: 22px;
+  }
+  .hour-temp {
+    font-size: 1.2rem;
+  }
+}
+
