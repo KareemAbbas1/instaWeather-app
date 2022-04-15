@@ -18,8 +18,8 @@
 
 /*Header*/
 .measurement-active {
-  width: 76px;
-  height: 48px;
+  width: 66px;
+  height: 38px;
   border-left: solid 1px white;
   background: rgba(255, 255, 255, 0.2)
 }
@@ -29,8 +29,8 @@
 }
 
 .measurement {
-  width: 76px;
-  height: 48px;
+  width: 66px;
+  height: 38px;
 }
 
 
@@ -45,18 +45,31 @@
 }
 
 .temp {
-  font-size: 8.7rem;
+  font-size: 8rem;
   /* margin-left: 142px; */
 }
 
 .hourly-temp {
-  /* margin-left: 130px; */
-  font-size: 35px;
+  font-size: 37px;
 }
+
+/*Hourly & Daily*/
+.nav-tabs .nav-link {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.nav-tabs .nav-link.active {
+  border-bottom: solid 4px white !important;
+}
+
 
 /*Hourly temp style*/
 .card-body {
-  min-height: 300px;
+  min-height: 210px;
   min-width: 115px;
 }
 

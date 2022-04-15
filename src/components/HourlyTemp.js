@@ -8,7 +8,7 @@ const Hourly = ({ hourlyTemprature, tempType }) => {
   const [data, setData] = useState();
 
   const twelveHours = async () => {
-    hourlyTemprature.length = 12;
+    hourlyTemprature.length = 23;
     setTimeout(() => {
       setData(hourlyTemprature)
     }, 100)
@@ -17,7 +17,7 @@ const Hourly = ({ hourlyTemprature, tempType }) => {
 
 
   return (
-    <Container fluid className='py-2'>
+    <Container fluid className=''>
       <div className='d-flex flex-row flex-nowrap overflow-auto'>
         {data ?
 

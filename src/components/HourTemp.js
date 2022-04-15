@@ -12,7 +12,6 @@ const HourTemp = ({ data, tempType }) => {
 
     const currentTime = new Date();
     let currentHour = currentTime.getHours();
-    console.log(currentHour)
    
     let unixTimestamp = data.time;
     let date = new Date(unixTimestamp * 1000);

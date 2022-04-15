@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Tabs, Tab } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import CurrentIcon from './CurrentIcon';
 import HourlyTemp from './HourlyTemp';
@@ -89,24 +89,24 @@ const MainView = () => {
     // console.log(data)
     return (
         <Container>
-            <div className='mt-5 d-flex justify-content-between align-items-center '>
-                <div className=''><h2>INSTAWEATER</h2></div>
+            <div className='my-4 d-flex justify-content-between align-items-center '>
+                <div className=''><h4>INSTAWEATER</h4></div>
                 <span className='d-flex justify-content-between'>
-                    <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h2 className='pt-1 text-center'>C</h2></div>
-                    <div className={tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleFMeasurement()}><h2 className='pt-1 text-center'>F</h2></div>
+                    <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h4 className='pt-1 text-center'>C</h4></div>
+                    <div className={tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleFMeasurement()}><h4 className='pt-1 text-center'>F</h4></div>
                 </span>
             </div>
 
 
-            <div className='pt-4 mt-4 d-flex justify-content-between align-items-center'>
+            <div className='mt-4 d-flex justify-content-between align-items-center'>
                 <div>
-                    <h1 id='location'>{city}</h1>
+                    <h3 id='location'>{city}</h3>
                     <p><strong>{newDate}</strong></p>
                     <div className='display-1'>
                         <CurrentIcon iconType={iconType} />
                     </div>
                     <div className='mt-2'>
-                        <h2>{summary}</h2>
+                        <h4>{summary}</h4>
                     </div>
                 </div>
 
@@ -118,11 +118,18 @@ const MainView = () => {
                     <div className='mt-4'>{aggregatedSummary}</div>
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <hr className='line-break'></hr>
-            </div>
+            </div> */}
 
-            <HourlyTemp tempType={tempType} hourlyTemprature={hourlyTemprature} />
+            <Tabs className="tabs" defaultActiveKey="hourly">
+                <Tab className='hourly' eventKey="hourly" title="Hourly">
+                    <HourlyTemp tempType={tempType} hourlyTemprature={hourlyTemprature} />
+                </Tab>
+                <Tab className='hourly' eventKey="daily" title="Daily" style={{color: 'white'}}>
+
+                </Tab>
+            </Tabs>
 
         </Container>
     )
