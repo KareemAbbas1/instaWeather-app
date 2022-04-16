@@ -3,27 +3,20 @@ import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import HourTemp from './HourTemp';
 
-const Hourly = ({ hourlyTemprature, tempType }) => {
+const Hourly = ({ hourlyTemperature, tempType }) => {
 
   const [data, setData] = useState();
 
   const twelveHours = async () => {
-    hourlyTemprature.length = 23;
+    hourlyTemperature.length = 23;
     setTimeout(() => {
-      setData(hourlyTemprature)
+      setData(hourlyTemperature)
     }, 100)
   };
   twelveHours();
 
-  // const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  // let d = data[0].time;
-  // let date = new Date(d * 1000)
-  // let day = weekday[date.getDay()];
-  // console.log(day)
-
-
   return (
-    <Container fluid className=''>
+    <Container fluid>
       <div className='d-flex flex-row flex-nowrap overflow-auto'>
         {data ?
 

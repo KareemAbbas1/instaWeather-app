@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Tabs, Tab } from 'react-bootstrap';
+import { Container, Tabs, Tab, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import CurrentIcon from './CurrentIcon';
 import HourlyTemp from './HourlyTemp';
@@ -17,7 +17,7 @@ const MainView = () => {
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let d = new Date();
     let m = d.getMonth() + 1;
-    let newDate = `${weekday[d.getDay()]}, ${m}.${d.getDate()}.${d.getFullYear()}`;
+    let newDate = `${weekday[d.getDay()]}, ${m}/${d.getDate()}/${d.getFullYear()}`;
 
     useEffect(() => {
         const x = document.getElementById("location")
@@ -49,7 +49,6 @@ const MainView = () => {
             .catch(error => console.log("Error", error));
         getWeatherData();
     };
-    console.log(data)
 
     // Handle toggle measurement type
     const toggleCMeasurement = () => {
@@ -73,8 +72,7 @@ const MainView = () => {
     /* Hourly temperature */
     let firstHourTemp = data ? Math.round(data.hourly.data[0].temperature) : null;
     let lasttHourTemp = data ? Math.round(data.hourly.data[11].temperature) : null;
-    let hourlyTemprature = data ? data.hourly.data : null;
-    // console.log(hourlyTemprature)
+    let hourlyTemperature = data ? data.hourly.data : null;
 
     // Convert to celsius
     let cFirstHourTemp = Math.round((firstHourTemp - 32) / 1.8);
@@ -86,10 +84,9 @@ const MainView = () => {
     let iconType = data ? data.currently.icon : null;
     /*End extract data*/
 
-    // console.log(data)
     return (
         <Container>
-            <div className='my-5 d-flex justify-content-between align-items-center '>
+            <div className='my-5 d-flex justify-content-between align-items-center'>
                 <div className=''><h4>INSTAWEATER</h4></div>
                 <span className='d-flex justify-content-between'>
                     <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h4 className='pt-1 text-center'>C</h4></div>
@@ -98,36 +95,35 @@ const MainView = () => {
             </div>
 
 
-            <div className='d-flex justify-content-between align-items-center'>
-                <div>
-                    <span id='location'>{city}</span><br />
-                    <span>{newDate}</span>
-                    <div className='icon'>
-                        <CurrentIcon iconType={iconType} />
+            <Row className='text-center'>
+                <Col lg={6} md={6} sm={6}>
+                    <div className='text-sm-start d-sm-flex flex-column'>
+                        <br />
+                        <span id='location'>{city}</span><br/>
+                        <span>{newDate}</span>
+                        <div className='icon'>
+                            <CurrentIcon iconType={iconType} />
+                        </div>
+                        <div>
+                            <span className='summary'>{summary}</span>
+                        </div>
                     </div>
-                    <div>
-                        <span className='summary'>{summary}</span>
-                    </div>
-                </div>
+                </Col>
 
-                <div className='temp-block d-flex align-items-end flex-column'>
-                    <h2 className='temp'>{tempType ? fTemp : cTemp}&#176;</h2>
-                    <h2 className='hourly-temp'>
-                        {tempType ? firstHourTemp : cFirstHourTemp}&#176;
-                        / {tempType ? lasttHourTemp : cLastHourTemp}&#176;</h2>
-                    <div className='aggregatedSummary'>{aggregatedSummary}</div>
-                </div>
-            </div>
-            {/* <div>
-                <hr className='line-break'></hr>
-            </div> */}
+                <Col lg={6} md={6} sm={6}>
+                    <div className='temp-block d-sm-flex align-items-end flex-column'>
+                        <h2 className='temp'>{tempType ? fTemp : cTemp}&#176;</h2>
+                        <h2 className='hourly-temp'>
+                            {tempType ? firstHourTemp : cFirstHourTemp}&#176;
+                            / {tempType ? lasttHourTemp : cLastHourTemp}&#176;</h2>
+                        <div className='aggregatedSummary'>{aggregatedSummary}</div>
+                    </div>
+                </Col>
+            </Row>
 
             <Tabs className="tabs" defaultActiveKey="hourly">
                 <Tab className='hourly' eventKey="hourly" title="Hourly">
-                    <HourlyTemp tempType={tempType} hourlyTemprature={hourlyTemprature} />
-                </Tab>
-                <Tab className='hourly' eventKey="daily" title="Daily" style={{color: 'white'}}>
-
+                    <HourlyTemp tempType={tempType} hourlyTemperature={hourlyTemperature} />
                 </Tab>
             </Tabs>
 

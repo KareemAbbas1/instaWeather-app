@@ -4,7 +4,6 @@ import CurrentIcon from './CurrentIcon';
 
 const HourTemp = ({ data, tempType }) => {
 
-    // console.log(data)
     let iconType = data ? data.icon : null;
 
     let fTemp = data ? Math.round(data.temperature) : null;
@@ -17,7 +16,7 @@ const HourTemp = ({ data, tempType }) => {
     let date = new Date(unixTimestamp * 1000);
     let hours = date.getHours();
     let minutes = '0' + date.getMinutes();
-    let formattedTime = hours + ':' + minutes.substring(-2);
+    let formattedTime = hours + ':' + minutes;
     
     return (
         <div className='card-body text-center'>

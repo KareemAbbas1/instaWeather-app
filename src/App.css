@@ -36,7 +36,7 @@
 
 /*Main Body*/
 .temp-block {
-  margin-bottom: 1.8rem;
+  margin-top: 0.5rem;
 }
 
 .temp {
@@ -47,12 +47,12 @@
 .hourly-temp {
   font-size: 37px;
   font-weight: 100;
-  padding-top: 0.5rem;
+  padding-top: 1.3rem;
+  margin-bottom: 1.8rem;
 }
 
 .aggregatedSummary {
   font-size: 20px;
-  margin-top: 1rem;
 }
 
 #location {
@@ -138,13 +138,14 @@
   .hourly-temp{
     font-size: 20px;
     padding-top: 0.4rem;
+    margin-bottom: 1.6rem;
   }
   .aggregatedSummary{
     font-size: 15px;
-    margin-top: 0.3rem;
   }
   #location{
     font-size: 1.2rem;
+    margin-top: 0.3rem;
   }
   .icon {
     font-size: 30px;
@@ -166,4 +167,3 @@
     font-size: 1.2rem;
   }
 }
-
