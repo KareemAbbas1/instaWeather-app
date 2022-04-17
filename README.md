@@ -1,4 +1,4 @@
-# Rubsta Weather application
+# Robusta Weather application
 
 ## Description
 A weather application that displays the current temperature with 24 hours cast, and daily temperature with seven days cast based on the user's location. The temperature can be displayed in both Fahrenheit and Celsius scales.
