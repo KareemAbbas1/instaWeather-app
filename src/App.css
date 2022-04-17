@@ -104,6 +104,22 @@
 
 /*End Hourly temp style*/
 
+/* Daily Temp styel */
+.card-body-daily {
+  min-width: 180px;
+  min-height: auto;
+}
+.days {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.day-temp {
+  font-size: 1.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+/* End Daily Temp */
 
 ::-webkit-scrollbar {
   height: 5px;
@@ -165,5 +181,15 @@
   }
   .hour-temp {
     font-size: 1.2rem;
+  }
+  /* Daily Temperature*/
+  .card-body-daily {
+    min-width: 62px;
+  }
+  .days {
+    font-size: 0.7rem;
+  }
+  .day-temp {
+    font-size: 0.7rem;
   }
 }

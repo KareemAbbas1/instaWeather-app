@@ -3,6 +3,7 @@ import { Container, Tabs, Tab, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import CurrentIcon from './CurrentIcon';
 import HourlyTemp from './HourlyTemp';
+import DailyTemp from './DailyTemp';
 
 const MainView = () => {
 
@@ -28,7 +29,7 @@ const MainView = () => {
                 x.innerHTML = "Geolocation is not supported on this browser"
             };
         };
-        getLocation();
+        return getLocation();
     }, []);
 
 
@@ -47,7 +48,6 @@ const MainView = () => {
             .then(res => res.json())
             .then(cityName => setCityName(cityName))
             .catch(error => console.log("Error", error));
-        getWeatherData();
     };
 
     // Handle toggle measurement type
@@ -69,9 +69,12 @@ const MainView = () => {
     let summary = data ? data.currently.summary : null;
     let aggregatedSummary = data ? data.hourly.summary : null;
 
+    // Daily temperature
+    let dailyTemperature = data ? data.daily.data : null;
+
     /* Hourly temperature */
     let firstHourTemp = data ? Math.round(data.hourly.data[0].temperature) : null;
-    let lasttHourTemp = data ? Math.round(data.hourly.data[11].temperature) : null;
+    let lasttHourTemp = data ? Math.round(data.hourly.data[22].temperature) : null;
     let hourlyTemperature = data ? data.hourly.data : null;
 
     // Convert to celsius
@@ -125,6 +128,10 @@ const MainView = () => {
                 <Tab className='hourly' eventKey="hourly" title="Hourly">
                     <HourlyTemp tempType={tempType} hourlyTemperature={hourlyTemperature} />
                 </Tab>
+                <Tab className='hourly' eventKey="daily" title="Daily">
+                    <DailyTemp tempType={tempType} dailyTemperature={dailyTemperature} />
+                </Tab>
+                
             </Tabs>
 
         </Container>
