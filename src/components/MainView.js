@@ -55,10 +55,6 @@ const MainView = () => {
         setTemptype(false);
     };
 
-    const toggleFMeasurement = () => {
-        setTemptype(true);
-    };
-
 
     /* Extracting the data out of the request body */
     // Main temperature
@@ -93,7 +89,7 @@ const MainView = () => {
                 <div className=''><h4>INSTAWEATER</h4></div>
                 <span className='d-flex justify-content-between'>
                     <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h4 className='pt-1 text-center'>C</h4></div>
-                    <div className={tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleFMeasurement()}><h4 className='pt-1 text-center'>F</h4></div>
+                    <div className={tempType ? 'measurement-active' : 'measurement'} onClick={() => setTemptype(true)}><h4 className='pt-1 text-center'>F</h4></div>
                 </span>
             </div>
 

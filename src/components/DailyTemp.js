@@ -8,14 +8,16 @@ const DailyTemp = ({ tempType, dailyTemperature }) => {
     const [data, setData] = useState();
     
     useEffect(() => {
-        const handleDays = async () => {
-            setTimeout(() => {
-                dailyTemperature.shift()
-                setData(dailyTemperature);
-            }, 100)
+        if(tempType) {
+            const handleDays = async () => {
+                setTimeout(() => {
+                    dailyTemperature.shift()
+                    setData(dailyTemperature);
+                }, 100)
+            }
+            handleDays();
         }
-        handleDays();
-    })
+    }, [dailyTemperature])
    
 
     return (
