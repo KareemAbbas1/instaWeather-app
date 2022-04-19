@@ -8,6 +8,8 @@ const DailyTemp = ({ tempType, dailyTemperature }) => {
     const [data, setData] = useState();
     
     useEffect(() => {
+        /* Wraping the function in a conditional to prevent repeate dailyTemperature.shift() 
+        upon rerenders triggered by toggling the temperatrue between Fahrenheit and Celsius */ 
         if(tempType) {
             const handleDays = async () => {
                 setTimeout(() => {
