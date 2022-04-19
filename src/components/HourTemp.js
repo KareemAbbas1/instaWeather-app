@@ -4,9 +4,9 @@ import CurrentIcon from './CurrentIcon';
 
 const HourTemp = ({ data, tempType }) => {
 
-    let iconType = data ? data.icon : null;
+    let iconType = data && data.icon;
 
-    let fTemp = data ? Math.round(data.temperature) : null;
+    let fTemp = data && Math.round(data.temperature);
     let cTemp = Math.round((fTemp - 32) / 1.8);
 
     const currentTime = new Date();

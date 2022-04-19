@@ -62,29 +62,29 @@ const MainView = () => {
 
     /* Extracting the data out of the request body */
     // Main temperature
-    let fTemp = data ? Math.round(data.currently.temperature) : null;
+    let fTemp = data && Math.round(data.currently.temperature);
     let cTemp = Math.round((fTemp - 32) / 1.8);
 
     // Summary
-    let summary = data ? data.currently.summary : null;
-    let aggregatedSummary = data ? data.hourly.summary : null;
+    let summary = data && data.currently.summary;
+    let aggregatedSummary = data && data.hourly.summary;
 
     // Daily temperature
-    let dailyTemperature = data ? data.daily.data : null;
+    let dailyTemperature = data && data.daily.data;
 
     /* Hourly temperature */
-    let firstHourTemp = data ? Math.round(data.hourly.data[0].temperature) : null;
-    let lasttHourTemp = data ? Math.round(data.hourly.data[22].temperature) : null;
-    let hourlyTemperature = data ? data.hourly.data : null;
+    let firstHourTemp = data && Math.round(data.hourly.data[0].temperature);
+    let lasttHourTemp = data && Math.round(data.hourly.data[22].temperature);
+    let hourlyTemperature = data && data.hourly.data;
 
     // Convert to celsius
     let cFirstHourTemp = Math.round((firstHourTemp - 32) / 1.8);
     let cLastHourTemp = Math.round((lasttHourTemp - 32) / 1.8);
 
     // Get city name
-    let city = cityName ? cityName.locality : null;
+    let city = cityName && cityName.locality;
     // Get Icon
-    let iconType = data ? data.currently.icon : null;
+    let iconType = data && data.currently.icon;
     /*End extract data*/
 
     return (
@@ -102,7 +102,7 @@ const MainView = () => {
                 <Col lg={6} md={6} sm={6}>
                     <div className='text-sm-start d-sm-flex flex-column'>
                         <br />
-                        <span id='location'>{city}</span><br/>
+                        <span id='location'>{city}</span><br />
                         <span>{newDate}</span>
                         <div className='icon'>
                             <CurrentIcon iconType={iconType} />
@@ -131,7 +131,7 @@ const MainView = () => {
                 <Tab className='hourly' eventKey="daily" title="Daily">
                     <DailyTemp tempType={tempType} dailyTemperature={dailyTemperature} />
                 </Tab>
-                
+
             </Tabs>
 
         </Container>

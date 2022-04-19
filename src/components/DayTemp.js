@@ -5,7 +5,13 @@ const DayTemp = ({ data, tempType }) => {
 
   let iconType = data && data.icon;
   const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  let d = data ? data.time : null;
+  
+  // Get tomorrow day
+  const today = new Date();
+  let tomorrow = weekday[today.getDay() + 1];
+
+  // Get week days
+  let d = data && data.time;
   let date = new Date(d * 1000)
   let day = weekday[date.getDay()];
 
@@ -17,7 +23,7 @@ const DayTemp = ({ data, tempType }) => {
 
   return (
     <div className='card-body-daily text-center'>
-      <p className='days'>{day}</p>
+      <p className='days'>{day === tomorrow ? 'Tomorrow' : day}</p>
       <div className='hourly-icon'><CurrentIcon iconType={iconType} /></div>
       <div className='day-temp'>{tempType ? fHighTemp : cHighTemp}&#176; / {tempType ? fLowTemp : cLowTemp}&#176;</div>
     </div>

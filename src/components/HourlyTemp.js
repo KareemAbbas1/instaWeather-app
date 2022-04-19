@@ -18,13 +18,10 @@ const Hourly = ({ hourlyTemperature, tempType }) => {
   return (
     <Container fluid>
       <div className='d-flex flex-row flex-nowrap overflow-auto'>
-        {data ?
-
+        {data &&
           data.map((h) => (
             <HourTemp key={h.time} data={h} tempType={tempType} />
-          )) :
-
-          null
+          ))
         }
       </div>
     </Container>
