@@ -50,13 +50,14 @@ const MainView = () => {
             .catch(error => console.log("Error", error));
     };
 
+    
     // Handle toggle measurement type
     const toggleCMeasurement = () => {
         setTemptype(false);
     };
 
 
-    /* Extracting the data out of the request body */
+    /* Extracting the data out of the response body */
     // Main temperature
     let fTemp = data && Math.round(data.currently.temperature);
     let cTemp = Math.round((fTemp - 32) / 1.8);
@@ -81,12 +82,11 @@ const MainView = () => {
     let city = cityName && cityName.locality;
     // Get Icon
     let iconType = data && data.currently.icon;
-    /*End extract data*/
 
     return (
         <Container>
             <div className='my-5 d-flex justify-content-between align-items-center'>
-                <div className=''><h4>INSTAWEATER</h4></div>
+                <div className='diaplay-md-5'><h4>INSTAWEATER</h4></div>
                 <span className='d-flex justify-content-between'>
                     <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h4 className='pt-1 text-center'>C</h4></div>
                     <div className={tempType ? 'measurement-active' : 'measurement'} onClick={() => setTemptype(true)}><h4 className='pt-1 text-center'>F</h4></div>
