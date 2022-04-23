@@ -50,14 +50,16 @@ const MainView = () => {
             .catch(error => console.log("Error", error));
     };
 
-    
+  console.log(data)
+
+
     // Handle toggle measurement type
     const toggleCMeasurement = () => {
         setTemptype(false);
     };
 
 
-    /* Extracting the data out of the response body */
+    /* Extracting the data out of the request body */
     // Main temperature
     let fTemp = data && Math.round(data.currently.temperature);
     let cTemp = Math.round((fTemp - 32) / 1.8);

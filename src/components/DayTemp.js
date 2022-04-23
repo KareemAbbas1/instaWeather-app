@@ -8,12 +8,13 @@ const DayTemp = ({ data, tempType }) => {
   
   // Get tomorrow day
   const today = new Date();
-  let tomorrow = weekday[today.getDay() + 1];
+  let tomorrow = today.getDay() === 6 ? weekday[today.getDay() - 6] : weekday[today.getDay() + 1];
 
   // Get week days
   let d = data && data.time;
   let date = new Date(d * 1000)
   let day = weekday[date.getDay()];
+
 
   
   let fHighTemp = data && Math.round(data.temperatureHigh);
