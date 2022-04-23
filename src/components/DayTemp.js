@@ -27,6 +27,7 @@ const DayTemp = ({ data, tempType }) => {
       <p className='days'>{day === tomorrow ? 'Tomorrow' : day}</p>
       <div className='hourly-icon'><CurrentIcon iconType={iconType} /></div>
       <div className='day-temp'>{tempType ? fHighTemp : cHighTemp}&#176; / {tempType ? fLowTemp : cLowTemp}&#176;</div>
+      <p>{data.summary}</p>
     </div>
   )
 }

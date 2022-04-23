@@ -106,7 +106,7 @@
 
 /* Daily Temp styel */
 .card-body-daily {
-  min-width: 210px;
+  min-width: 255px;
   min-height: auto;
 }
 .days {
@@ -184,7 +184,7 @@
   }
   /* Daily Temperature*/
   .card-body-daily {
-    min-width: 82px;
+    min-width: 165px;
   }
   .days {
     font-size: 0.7rem;

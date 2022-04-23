@@ -87,7 +87,7 @@ const MainView = () => {
 
     return (
         <Container>
-            <div className='my-5 d-flex justify-content-between align-items-center'>
+            <div className='mt-5 mb-3 d-flex justify-content-between align-items-center'>
                 <div className='diaplay-md-5'><h4>INSTAWEATER</h4></div>
                 <span className='d-flex justify-content-between'>
                     <div className={!tempType ? 'measurement-active' : 'measurement'} onClick={() => toggleCMeasurement()}><h4 className='pt-1 text-center'>C</h4></div>
