@@ -15,9 +15,26 @@ const Hourly = ({ hourlyTemperature, tempType }) => {
   };
   twelveHours();
 
+
+
+  if (typeof window !== "undefined" && document.getElementById("hourly-container")) {
+    const horizonalContainer = document.getElementById("hourly-container");
+    horizonalContainer.addEventListener("wheel", (e) => {
+      e.preventDefault();
+
+      horizonalContainer.scrollBy({
+        left: e.deltaY < 0 ? -30 : 30
+      });
+    });
+  }
+
+
   return (
     <Container fluid>
-      <div className='d-flex flex-row flex-nowrap overflow-auto'>
+      <div
+        id="hourly-container"
+        className='d-flex flex-row flex-nowrap horizonal-container'
+      >
         {data &&
           data.map((h) => (
             <HourTemp key={h.time} data={h} tempType={tempType} />
