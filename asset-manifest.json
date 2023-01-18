@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/instaWeather-app/static/css/main.2d56353f.css",
+    "main.js": "/instaWeather-app/static/js/main.fbe15e21.js",
+    "static/media/Background.jpg": "/instaWeather-app/static/media/Background.027cc1500cd6e1866f9f.jpg",
+    "static/media/weathericons-regular-webfont.svg": "/instaWeather-app/static/media/weathericons-regular-webfont.1341a15172cec8dae06e.svg",
+    "static/media/weathericons-regular-webfont.eot": "/instaWeather-app/static/media/weathericons-regular-webfont.bb2ec001c20cf752f852.eot",
+    "static/media/weathericons-regular-webfont.ttf": "/instaWeather-app/static/media/weathericons-regular-webfont.0942d1e1c447d6ce3ffc.ttf",
+    "static/media/weathericons-regular-webfont.woff": "/instaWeather-app/static/media/weathericons-regular-webfont.371511ddba5fdac0538c.woff",
+    "static/media/weathericons-regular-webfont.woff2": "/instaWeather-app/static/media/weathericons-regular-webfont.e218aee6928fe3da9ed6.woff2",
+    "index.html": "/instaWeather-app/index.html",
+    "main.2d56353f.css.map": "/instaWeather-app/static/css/main.2d56353f.css.map",
+    "main.fbe15e21.js.map": "/instaWeather-app/static/js/main.fbe15e21.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d56353f.css",
+    "static/js/main.fbe15e21.js"
+  ]
+}
