@@ -38,7 +38,8 @@ const MainView = () => {
         let longitude = position.coords.longitude;
 
         // Use this link "https://cors-anywhere.herokuapp.com/corsdemo" to get a temporary access to the CORS-anywhere demo server
-        fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${latitude},${longitude}`)
+        // https://cors-anywhere.herokuapp.com/
+        fetch(`https://corsanywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${latitude},${longitude}`)
             .then(res => res.json())
             .then(data => setData(data))
             .catch(error => console.log("Error", error));
