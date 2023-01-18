@@ -85,7 +85,7 @@ const MainView = () => {
     let iconType = data && data.currently.icon;
 
     return (
-        <Container className='d-flex flex-column justify-content-between h-100 py-5'>
+        <Container className='responsive-container d-flex flex-column justify-content-between h-100 py-5'>
             <div className='mt-2 mb-3 d-flex justify-content-between align-items-center'>
                 <div className='diaplay-md-5'><h4>INSTAWEATER</h4></div>
                 <span className='d-flex justify-content-between'>

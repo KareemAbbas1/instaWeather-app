@@ -17,9 +17,16 @@
   color: white;
   overflow: hidden;
   padding-bottom: 2rem;
-  display: flex;
-  align-items: center;
 }
+
+/* 15 inch */
+@media (min-width: 1350px) and (max-width: 1390px) {
+  .responsive-container {
+    transform: scale(0.9);
+  }
+}
+
+
 
 /*Header*/
 .measurement-active {
