@@ -17,6 +17,8 @@
   color: white;
   overflow: hidden;
   padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 /*Header*/

@@ -50,7 +50,6 @@ const MainView = () => {
             .catch(error => console.log("Error", error));
     };
 
-  console.log(data)
 
 
     // Handle toggle measurement type
